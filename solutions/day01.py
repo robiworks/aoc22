@@ -2,10 +2,12 @@ with open("../data/day01.txt", "r") as f:
     lines = f.read()
     elves = lines.split("\n\n")
 
-    maxcals = 0
+    cals = []
     for elf in elves:
-        cals = elf.split("\n")
-        cals = sum([int(cal) for cal in cals if cal])
-        maxcals = cals if cals > maxcals else maxcals
+        c = elf.split("\n")
+        c = sum([int(cal) for cal in c if cal])
+        cals.append(c)
 
-    print(maxcals)
+    cals = sorted(cals, reverse=True)
+    print(cals[0])
+    print(sum(cals[0:3]))
