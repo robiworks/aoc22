@@ -21,3 +21,15 @@ with open("../data/day03.txt", "r") as f:
         priorities += priority(common)
 
     print(priorities)
+
+    # Part 2
+    badge_priorities = 0
+    for i in range(0, len(lines), 3):
+        # Groups of 3 rucksacks
+        group = list(map(lambda s: set(s.strip()), lines[i : i + 3]))
+
+        # Common item between groups
+        badge = "".join(group[0].intersection(group[1]).intersection(group[2]))
+        badge_priorities += priority(badge)
+
+    print(badge_priorities)
