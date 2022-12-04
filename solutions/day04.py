@@ -1,3 +1,10 @@
+def overlap(section1: "tuple[int, int]", section2: "tuple[int, int]") -> bool:
+    (s1, e1) = section1
+    (s2, e2) = section2
+
+    return s1 <= e2 and e1 >= s2
+
+
 def full_overlap(section1: "tuple[int, int]", section2: "tuple[int, int]") -> bool:
     (s1, e1) = section1
     (s2, e2) = section2
@@ -8,6 +15,7 @@ def full_overlap(section1: "tuple[int, int]", section2: "tuple[int, int]") -> bo
 with open("../data/day04.txt", "r") as f:
     lines = f.readlines()
 
+    overlaps = 0
     full_overlaps = 0
     for line in lines:
         [sec1, sec2] = line.split(",")
@@ -18,5 +26,6 @@ with open("../data/day04.txt", "r") as f:
         t2 = (int(s2), int(e2))
 
         full_overlaps += 1 if full_overlap(t1, t2) else 0
+        overlaps += 1 if overlap(t1, t2) else 0
 
-    print(full_overlaps)
+    print(full_overlaps, overlaps)
