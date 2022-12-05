@@ -18,8 +18,11 @@ with open("../data/day05.txt", "r") as f:
                 int(n) for n in re.findall(r"\d+", line.strip())
             ]
 
-            for _ in range(amount):
-                stacks[stack2 - 1].append(stacks[stack1 - 1].pop())
+            # for _ in range(amount):
+            #     stacks[stack2 - 1].append(stacks[stack1 - 1].pop())
+
+            stacks[stack2 - 1].extend(stacks[stack1 - 1][-amount:])
+            del stacks[stack1 - 1][-amount:]
 
     result = "".join([stack[-1] for stack in stacks])
     print(result)
